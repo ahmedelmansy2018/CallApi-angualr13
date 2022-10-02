@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="asset" alt="logo" style="width:30px; height: auto">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" routerLink="/Home" routerLinkActive="active">Home</a>
+        <!-- <a *ngIf="ServApiService.isLoggedIn$ | async" class="nav-link" routerLink="/employees" routerLinkActive="active">Employees</a>
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+         -->
+        <a class="nav-link" [hidden]="isUserLogged" routerLink="/Login" routerLinkActive="active">Login</a>
+        <a class="nav-link" [hidden]="!isUserLogged" routerLink="/Logout" routerLinkActive="active">Logout</a>
+        <a class="nav-link" [hidden]="!isUserLogged" routerLink="/Employee" routerLinkActive="active">Employee</a>
+      </div>
+    </div>
+  </div>
+</nav>

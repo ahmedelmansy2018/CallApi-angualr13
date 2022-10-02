@@ -1,0 +1,102 @@
+<p>get-employee works!</p>
+
+<!-- Add employee trigger modal -->
+<button type="button" class="btn btn-primary float-end m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+(click)="modalAdd()"
+><i class="fa-solid fa-plus"></i>
+  Add employee
+</button>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-secondary float-end m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Show employee 
+</button> -->
+
+<table class="table table-striped">
+  <thead>
+    <th>#</th>
+    <th>employee Name</th>
+    <!-- <th>Password</th> -->
+    <th>Eamil</th>
+    <th>Aaddress</th>
+    <th>Phone</th>
+    <th>Salary</th>
+    <th>Opration</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of employeeList$|async ;let indexOfelement=index;">
+      <td>{{indexOfelement+1}}</td>
+       <td>{{item.name}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.address}}</td>
+      <td>{{item.phone}}</td>
+      <td>{{item.salary}}</td>
+      <td>
+        <button class="btn btn-primary"
+        (click)="modalEdit(item)" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+        >
+        Edit
+        <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button class="btn btn-danger"
+        (click)="delete(item)"
+        >
+        Delete
+        <i class="fa fa-trash-o"></i> 
+        </button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+<div class="alert alert-success" role="alert" id="add-success-alert">
+  employee successfully added!
+</div>
+
+<div class="alert alert-success" role="alert" id="update-success-alert">
+  employee successfully updated!
+</div>
+
+<div class="alert alert-success" role="alert" id="delete-success-alert">
+  employee successfully deleted!
+</div>
+
+
+
+
+
+<!-- Show employee Name modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">employee Name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p *ngFor="let name of employeeList$|async">{{name.id}} - {{name.Name}}</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Add or edit employee Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="modalClose()" id="add-edit-modal-close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-add-editemployee [employee]="employee" *ngIf="activateAddEditemployeeComponent"></app-add-editemployee>
+      </div>
+    </div>
+  </div>
+</div>

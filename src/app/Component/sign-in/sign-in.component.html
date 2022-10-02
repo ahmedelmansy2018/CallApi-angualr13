@@ -1,0 +1,24 @@
+<div class="center">
+  <form #empFrm="ngForm" (ngSubmit)="submitForm()">
+    <div class="mb-3">
+      <label for="Pemail" class="form-label">Email</label>
+      <input #empName="ngModel" type="text" class="form-control" id="pName" name="email" [(ngModel)]="email" required>
+      <div class="alert alert-warning" *ngIf="empName?.errors?.['required'] && emppassword?.touched">
+        <span *ngIf="empName.errors?.['required']"> Name is required</span>
+        <!-- <span *ngIf="empName.errors?.['pattern']"> Name must be 3 letters at least</span> -->
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="uPass" class="form-label">Password</label>
+      <input #emppassword="ngModel" type="password"  class="form-control" id="uPass" name="password" [(ngModel)]="password" required >
+        <div class="alert alert-warning" *ngIf="emppassword?.errors?.['required'] && emppassword?.touched">
+        <span>Password is required</span>
+      </div>
+    </div>
+    <div class="col text-center">
+      <button [disabled]="empFrm.invalid" type="submit" class="btn btn-primary">Submit</button>   
+    </div>
+  </form>
+</div>
+ 
+ 
